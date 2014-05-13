@@ -2,56 +2,50 @@
 # TODO: Wrap long text, decide output format according to Terminal Lines and Cols.
 
 FREEMEM=`free | awk '/^Mem:/{print $4}'`
-TermColors=`tput colors`
+TermColors=`tput colors` # Note: tput results only reflects the terminal's color compatibility; Old shells ( like bash on OS X ) with an `echo` without a `-e` flag can still cause troubles. Well, we are using Linux and a new version of bash..
 Cols=`tput cols`
 Lines=`tput lines`
-#if [ TermColors == 256 ] # Well, we need someone to choose a suitable color. http://misc.flogisoft.com/bash/tip_colors_and_formatting
+#if [ TermColors == 256 ] # I need someone to choose a suitable color. http://misc.flogisoft.com/bash/tip_colors_and_formatting
   #then
     #BLUE=
     #CYAN=
   #else
     BLUE="\e[34m" # TODO: Choose a better one...
-    #CYAN=\e[
+    RED="\e[31m"
+    LGRAY="\e[37m"
 #fi
 wrap_text() {
-  echo " This is a TODO."
+  echo "$@" # This is a stub.
 }
 
-echo -e "$BLUE                                                     
+Kernel=`wrap_text uname -r` # Oh that long long name...
+
+# TODO: move everything that may be really long to a variable so that the wrap_text() function can easily wrap and change them.
+echo -e "${BLUE}                                                     
                                                   
-                             77777777                                 \e[31mDistribution: \e[37m`lsb_release -i | cut -c17-`$BLUE
+                             77777777                                 ${RED}Distribution: ${LGRAY}`lsb_release -i | cut -c17-`${BLUE}
                              777777777777.                            
-                             7777777777777777                         \e[31mProcessor: \e[37m`cat /proc/cpuinfo | grep 'model name' | head -n1 | cut -c14-`$BLUE
+                             7777777777777777                         ${RED}Processor: ${LGRAY}`cat /proc/cpuinfo | grep 'model name' | head -n1 | cut -c14-`${BLUE}
                              77777777777777777              
-                             7777777777777777777                      \e[31mArchitecture: \e[37m`uname -m`$BLUE
+                             7777777777777777777                      ${RED}Architecture: ${LGRAY}`uname -m`${BLUE}
                               77777777777777777777           
-          77                       7777777777777777                   \e[31mKernel: \e[37m`uname -r`$BLUE
+          77                       7777777777777777                   ${RED}Kernel: ${LGRAY}${KERNEL}${BLUE}
          777777                      777777777777777          
-        7777777777                    77777777777777.                 \e[31mUptime: \e[37m`cat /proc/uptime | grep -o '^[0-9]\+'` Minutes$BLUE
+        7777777777                    77777777777777.                 ${RED}Uptime: ${LGRAY}`cat /proc/uptime | grep -o '^[0-9]\+'` Minutes${BLUE}
        7777777777777                   77777777777777         
-      .777777777777                     7777777777777.                \e[31mFree RAM: \e[37m`expr $FREEMEM / 1024` MiB$BLUE
+      .777777777777                     7777777777777.                ${RED}Free RAM: ${LGRAY}`expr $FREEMEM / 1024` MiB${BLUE}
       7777777777777                     7777777777777.         
-      7777777777777                     7777777777777.                \e[31mShell: \e[37m`echo $SHELL`$BLUE
+      7777777777777                     7777777777777.                ${RED}Shell: ${LGRAY}`echo $SHELL`${BLUE}
       7777777777777                     7777777777777         
-      7777777777777                     7777777777777                 \e[31mUser: \e[37m`whoami`$BLUE
+      7777777777777                     7777777777777                 ${RED}User: ${LGRAY}`whoami`${BLUE}
       7777777777777                    7777777777777         
-      777777777777777                    7777777777                   \e[31mFree Space on / : \e[37m`df -h / | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB$BLUE
+      777777777777777                    7777777777                   ${RED}Free Space on / : ${LGRAY}`df -h / | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB${BLUE}
        777777777777777                       7777          
-        7777777777777777                                              \e[31mFree Space on /home : \e[37m`df -h /home | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB$BLUE
+        7777777777777777                                              ${RED}Free Space on /home : ${LGRAY}`df -h /home | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB${BLUE}
          777777777777777777777                              
-          777777777777777777777                                       \e[31mTemporary Files Size: \e[37m`du -sh -m /tmp 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB$BLUE
+          777777777777777777777                                       ${RED}Temporary Files Size: ${LGRAY}`du -sh -m /tmp 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${BLUE}
            ..777777777777777777                             
-             .77777777777777777                                       \e[31mLog Files Size: \e[37m`du -sh -m /var/log 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB$BLUE
+             .77777777777777777                                       ${RED}Log Files Size: ${LGRAY}`du -sh -m /var/log 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${BLUE}
                .777777777777777                             
-                 .7777777777777                                       \e[31mDPKG Database Size: \e[37m`du -sh -m /var/lib/dpkg 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB$BLUE
+                 .7777777777777                                       ${RED}DPKG Database Size: ${LGRAY}`du -sh -m /var/lib/dpkg 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${BLUE}
                       777777777                             \e[0m"
-                                                            
-                                                            
-                                                            
-                                                            
-                                                            
-                                                            
-                                        
-                                        
-                                        
-                                        

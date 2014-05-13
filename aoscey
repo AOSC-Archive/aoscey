@@ -35,7 +35,7 @@ echo -e "${BLUE}
                                                   
                              77777777                                 ${RED}Distribution: ${LGRAY}`lsb_release -i | cut -c17-`${BLUE}
                              777777777777.                            
-                             7777777777777777                         ${RED}Processor: ${LGRAY}`cat /proc/cpuinfo | grep 'model name' | head -n1 | cut -c14- | cut -f1 -d "@" | rev | cut -b 5- | rev`${BLUE}
+                             7777777777777777                         ${RED}Processor: ${LGRAY}`cat /proc/cpuinfo | grep 'model name' | head -n1 | cut -c14- | cut -f1 -d "@"`${BLUE}
                              77777777777777777              
                              7777777777777777777                      ${RED}Architecture: ${LGRAY}`uname -m`${BLUE}
                               77777777777777777777           

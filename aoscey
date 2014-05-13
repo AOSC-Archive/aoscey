@@ -1,50 +1,50 @@
 #!/bin/bash
-# TODOs: Wrap long text, decide output format according to Terminal Lines and Cols.
+# TODO: Wrap long text, decide output format according to Terminal Lines and Cols.
 
 FREEMEM=`free | awk '/^Mem:/{print $4}'`
 TermColors=`tput colors`
 Cols=`tput cols`
 Lines=`tput lines`
-if [ TermColors == 256 ] # Well, we need someone to choose a suitable color. http://misc.flogisoft.com/bash/tip_colors_and_formatting
-  then
-    BLUE=
-    CYAN=
-  else
-    BLUE=\e[34m
-    CYAN=\e[
-fi
-wrap_text(){
-  
+#if [ TermColors == 256 ] # Well, we need someone to choose a suitable color. http://misc.flogisoft.com/bash/tip_colors_and_formatting
+  #then
+    #BLUE=
+    #CYAN=
+  #else
+    BLUE="\e[34m" # TODO: Choose a better one...
+    #CYAN=\e[
+#fi
+wrap_text() {
+  echo " This is a TODO."
 }
 
-echo -e "\e[36m                                                     
+echo -e "$BLUE                                                     
                                                   
-                             77777777                                 \e[31mDistribution: \033[37m`lsb_release -i | cut -c17-`\033[36m
+                             77777777                                 \e[31mDistribution: \e[37m`lsb_release -i | cut -c17-`$BLUE
                              777777777777.                            
-                             7777777777777777                         \033[31mProcessor: \033[37m`cat /proc/cpuinfo | grep 'model name' | head -n1 | cut -c14-`\033[36m
+                             7777777777777777                         \e[31mProcessor: \e[37m`cat /proc/cpuinfo | grep 'model name' | head -n1 | cut -c14-`$BLUE
                              77777777777777777              
-                             7777777777777777777                      \033[31mArchitecture: \033[37m`uname -m`\033[36m
+                             7777777777777777777                      \e[31mArchitecture: \e[37m`uname -m`$BLUE
                               77777777777777777777           
-          77                       7777777777777777                   \033[31mKernel: \033[37m`uname -r`\033[36m
+          77                       7777777777777777                   \e[31mKernel: \e[37m`uname -r`$BLUE
          777777                      777777777777777          
-        7777777777                    77777777777777.                 \033[31mUptime: \033[37m`cat /proc/uptime | grep -o '^[0-9]\+'` Minutes\033[36m
+        7777777777                    77777777777777.                 \e[31mUptime: \e[37m`cat /proc/uptime | grep -o '^[0-9]\+'` Minutes$BLUE
        7777777777777                   77777777777777         
-      .777777777777                     7777777777777.                \033[31mFree RAM: \033[37m`expr $FREEMEM / 1024` MiB\033[36m
+      .777777777777                     7777777777777.                \e[31mFree RAM: \e[37m`expr $FREEMEM / 1024` MiB$BLUE
       7777777777777                     7777777777777.         
-      7777777777777                     7777777777777.                \033[31mShell: \033[37m`echo $SHELL`\033[36m
+      7777777777777                     7777777777777.                \e[31mShell: \e[37m`echo $SHELL`$BLUE
       7777777777777                     7777777777777         
-      7777777777777                     7777777777777                 \033[31mUser: \033[37m`whoami`\033[36m
+      7777777777777                     7777777777777                 \e[31mUser: \e[37m`whoami`$BLUE
       7777777777777                    7777777777777         
-      777777777777777                    7777777777                   \033[31mFree Space on / : \033[37m`df -h / | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB\033[36m
+      777777777777777                    7777777777                   \e[31mFree Space on / : \e[37m`df -h / | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB$BLUE
        777777777777777                       7777          
-        7777777777777777                                              \033[31mFree Space on /home : \033[37m`df -h /home | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB\033[36m
+        7777777777777777                                              \e[31mFree Space on /home : \e[37m`df -h /home | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB$BLUE
          777777777777777777777                              
-          777777777777777777777                                       \033[31mTemporary Files Size: \033[37m`du -sh -m /tmp 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB\033[36m
+          777777777777777777777                                       \e[31mTemporary Files Size: \e[37m`du -sh -m /tmp 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB$BLUE
            ..777777777777777777                             
-             .77777777777777777                                       \033[31mLog Files Size: \033[37m`du -sh -m /var/log 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB\033[36m
+             .77777777777777777                                       \e[31mLog Files Size: \e[37m`du -sh -m /var/log 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB$BLUE
                .777777777777777                             
-                 .7777777777777                                       \033[31mDPKG Database Size: \033[37m`du -sh -m /var/lib/dpkg 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB\033[36m
-                      777777777                             \033[0m"
+                 .7777777777777                                       \e[31mDPKG Database Size: \e[37m`du -sh -m /var/lib/dpkg 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB$BLUE
+                      777777777                             \e[0m"
                                                             
                                                             
                                                             

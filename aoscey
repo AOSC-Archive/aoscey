@@ -14,7 +14,7 @@ Lines=`tput lines`
     RED="\e[31m"
     LGRAY="\e[37m"
 #fi
-wrap_text() {
+wrap_text() { # Lots of TODOs! We need to change the way the script displays the information if we really want the wrap.
   echo "$@" # This is a stub.
 }
 

@@ -1,0 +1,42 @@
+#!/bin/bash
+
+FREEMEM=`free | awk '/^Mem:/{print $4}'`
+
+echo -e "\033[36m                                                     
+                                                  
+                             77777777                                 \033[31mDistribution: \033[37m`lsb_release -i | cut -c17-`\033[36m
+                             777777777777.                            
+                             7777777777777777                         \033[31mProcessor: \033[37m`cat /proc/cpuinfo | grep 'model name' | head -n1 | cut -c14-`\033[36m
+                             77777777777777777              
+                             7777777777777777777                      \033[31mArchitecture: \033[37m`uname -m`\033[36m
+                              77777777777777777777           
+          77                       7777777777777777                   \033[31mKernel: \033[37m`uname -r`\033[36m
+         777777                      777777777777777          
+        7777777777                    77777777777777.                 \033[31mUptime: \033[37m`cat /proc/uptime | grep -o '^[0-9]\+'` Minutes\033[36m
+       7777777777777                   77777777777777         
+      .777777777777                     7777777777777.                \033[31mFree RAM: \033[37m`expr $FREEMEM / 1024` MiB\033[36m
+      7777777777777                     7777777777777.         
+      7777777777777                     7777777777777.                \033[31mShell: \033[37m`echo $SHELL`\033[36m
+      7777777777777                     7777777777777         
+      7777777777777                     7777777777777                 \033[31mUser: \033[37m`whoami`\033[36m
+      7777777777777                    7777777777777         
+      777777777777777                    7777777777                   \033[31mFree Space on / : \033[37m`df -h / | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB\033[36m
+       777777777777777                       7777          
+        7777777777777777                                              \033[31mFree Space on /home : \033[37m`df -h /home | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB\033[36m
+         777777777777777777777                              
+          777777777777777777777                                       \033[31mTemporary Files Size: \033[37m`du -sh -m /tmp 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB\033[36m
+           ..777777777777777777                             
+             .77777777777777777                                       \033[31mLog Files Size: \033[37m`du -sh -m /var/log 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB\033[36m
+               .777777777777777                             
+                 .7777777777777                                       \033[31mDPKG Database Size: \033[37m`du -sh -m /var/lib/dpkg 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB\033[36m
+                      777777777                             \033[0m"
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                        
+                                        
+                                        
+                                        

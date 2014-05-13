@@ -1,10 +1,25 @@
 #!/bin/bash
+# TODOs: Wrap long text, decide output format according to Terminal Lines and Cols.
 
 FREEMEM=`free | awk '/^Mem:/{print $4}'`
+TermColors=`tput colors`
+Cols=`tput cols`
+Lines=`tput lines`
+if [ TermColors == 256 ] # Well, we need someone to choose a suitable color. http://misc.flogisoft.com/bash/tip_colors_and_formatting
+  then
+    BLUE=
+    CYAN=
+  else
+    BLUE=\e[34m
+    CYAN=\e[
+fi
+wrap_text(){
+  
+}
 
-echo -e "\033[36m                                                     
+echo -e "\e[36m                                                     
                                                   
-                             77777777                                 \033[31mDistribution: \033[37m`lsb_release -i | cut -c17-`\033[36m
+                             77777777                                 \e[31mDistribution: \033[37m`lsb_release -i | cut -c17-`\033[36m
                              777777777777.                            
                              7777777777777777                         \033[31mProcessor: \033[37m`cat /proc/cpuinfo | grep 'model name' | head -n1 | cut -c14-`\033[36m
                              77777777777777777              

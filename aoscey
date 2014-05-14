@@ -1,16 +1,22 @@
 #!/bin/bash
+
 # TODO: Wrap long text, decide output format according to Terminal Lines and Cols.
+# TODO: Better way to print stuff, echo is UGLY. Major FLAW.
 
 FREEMEM=`free | awk '/^Mem:/{print $4}'`
+
 TermColors=`tput colors` # Note: tput results only reflects the terminal's color compatibility; Old shells ( like bash on OS X ) with an `echo` without a `-e` flag can still cause troubles. Well, we are using Linux and a new version of bash..
 Cols=`tput cols`
 Lines=`tput lines`
+
 #if [ TermColors == 256 ] # I need someone to choose a suitable color. http://misc.flogisoft.com/bash/tip_colors_and_formatting
+                          # How are you supposed to make sure that (even) Konsole defaults to 256-color terminal?
   #then
     #BLUE=
     #CYAN=
   #else
-    BLUE="\e[34m" # TODO: Choose a better one...
+    BLUE="\e[36m" # TODO: Choose a better one...
+                  # Don't get me wrong, just want it to be easier to read on a terminal, not to be accurate.
     RED="\e[31m"
     LGRAY="\e[37m"
 #fi
@@ -18,7 +24,10 @@ wrap_text() { # Lots of TODOs! We need to change the way the script displays the
   echo "$@" # This is a stub.
 }
 
-Kernel=`wrap_text uname -r` # Oh that long long name...
+# Kernel=`wrap_text uname -r` # Oh that long long name...
+# WHAT ARE YOU TALKING ABOUT HERE...
+
+Kernel=`uname -r`
 
 # TODO: move everything that may be really long to a variable so that the wrap_text() function can easily wrap and change them.
 echo -e "${BLUE}                                                     

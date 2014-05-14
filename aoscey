@@ -48,4 +48,6 @@ echo -e "${BLUE}
              .77777777777777777                                       ${RED}Log Files Size: ${LGRAY}`du -sh -m /var/log 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${BLUE}
                .777777777777777                             
                  .7777777777777                                       ${RED}DPKG Database Size: ${LGRAY}`du -sh -m /var/lib/dpkg 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${BLUE}
-                      777777777                             \e[0m"
+                      777777777                             
+
+                                                                      \e[0m"

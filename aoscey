@@ -35,7 +35,6 @@ Kernel=`uname -r | cut -f1,2 -d "-"`
 if [[ Cols -ge 120 ]]
 then
 echo -e "${BLUE}                                                     
-                                                  
                              77777777                                 ${RED}Distribution: ${LGRAY}`lsb_release -i | cut -c17-`${BLUE}
                              777777777777.                            
                              7777777777777777                         ${RED}Processor: ${LGRAY}`cat /proc/cpuinfo | grep 'model name' | head -n1 | cut -c14- | cut -f1 -d "@"`${BLUE}

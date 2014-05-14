@@ -41,7 +41,7 @@ echo -e "${BLUE}
                               77777777777777777777           
           77                       7777777777777777                   ${RED}Kernel: ${LGRAY}${Kernel}${BLUE}
          777777                      777777777777777          
-        7777777777                    77777777777777.                 ${RED}Uptime: ${LGRAY}`cat /proc/uptime | grep -o '^[0-9]\+'` Minutes${BLUE}
+        7777777777                    77777777777777.                 ${RED}Uptime: ${LGRAY}`cat /proc/uptime | grep -o '^[0-9]\+'` Seconds${BLUE}
        7777777777777                   77777777777777         
       .777777777777                     7777777777777.                ${RED}Free RAM: ${LGRAY}`expr $FREEMEM / 1024` MiB${BLUE}
       7777777777777                     7777777777777.         

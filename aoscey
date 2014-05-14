@@ -27,7 +27,8 @@ wrap_text() { # Lots of TODOs! We need to change the way the script displays the
 # Kernel=`wrap_text uname -r` # Oh that long long name...
 # WHAT ARE YOU TALKING ABOUT HERE...
 
-Kernel=`uname -r`
+Kernel=`uname -r | cut -f1 -d "-"`
+# That would be shorter wouldn't it...
 
 # TODO: move everything that may be really long to a variable so that the wrap_text() function can easily wrap and change them.
 echo -e "${BLUE}                                                     

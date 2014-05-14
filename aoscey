@@ -11,11 +11,12 @@ Lines=`tput lines`
 
 #if [ TermColors == 256 ] # I need someone to choose a suitable color. http://misc.flogisoft.com/bash/tip_colors_and_formatting
                           # How are you supposed to make sure that (even) Konsole defaults to 256-color terminal?
+                          # Konsole actually emulates other terminals, like xterm256. tput knows how many colors xterm256 supports.
   #then
     #BLUE=
     #CYAN=
   #else
-    BLUE="\e[36m" # TODO: Choose a better one...
+    BLUE="\e[36m" # TODO: Choose a better one... # Try 94m
                   # Don't get me wrong, just want it to be easier to read on a terminal, not to be accurate.
     RED="\e[31m"
     LGRAY="\e[37m"
@@ -27,7 +28,7 @@ wrap_text() { # Lots of TODOs! We need to change the way the script displays the
 # Kernel=`wrap_text uname -r` # Oh that long long name...
 # WHAT ARE YOU TALKING ABOUT HERE...
 
-Kernel=`uname -r | cut -f1 -d "-"`
+Kernel=`uname -r | cut -f1,2 -d "-"`
 # That would be shorter wouldn't it...
 
 # TODO: move everything that may be really long to a variable so that the wrap_text() function can easily wrap and change them.

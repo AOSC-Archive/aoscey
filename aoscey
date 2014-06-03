@@ -13,13 +13,14 @@ Lines=`tput lines`
                           # How are you supposed to make sure that (even) Konsole defaults to 256-color terminal?
                           # Konsole actually emulates other terminals, like xterm256. tput knows how many colors xterm256 supports.
   #then
-    #BLUE=
+    #YELLOW=
     #CYAN=
   #else
     BLUE="\e[36m" # TODO: Choose a better one... # Try 94m
                   # Don't get me wrong, just want it to be easier to read on a terminal, not to be accurate.
     RED="\e[31m"
     LGRAY="\e[37m"
+    YELLOW="\e[33m"
 #fi
 wrap_text() { # Lots of TODOs! We need to change the way the script displays the information if we really want the wrap.
   echo "$@" # This is a stub.
@@ -34,38 +35,38 @@ Kernel=`uname -r | cut -f1,2 -d "-"`
 # TODO: move everything that may be really long to a variable so that the wrap_text() function can easily wrap and change them.
 if [[ Cols -ge 120 ]]
 then
-echo -e "${BLUE}                                                     
-                             77777777                                 ${RED}Distribution: ${LGRAY}`lsb_release -i | cut -c17-`${BLUE}
+echo -e "${YELLOW}                                                     
+                             77777777                                 ${RED}Distribution: ${LGRAY}`lsb_release -i | cut -c17-`${YELLOW}
                              777777777777.                            
-                             7777777777777777                         ${RED}Processor: ${LGRAY}`cat /proc/cpuinfo | grep 'model name' | head -n1 | cut -c14- | cut -f1 -d "@"`${BLUE}
+                             7777777777777777                         ${RED}Processor: ${LGRAY}`cat /proc/cpuinfo | grep 'model name' | head -n1 | cut -c14- | cut -f1 -d "@"`${YELLOW}
                              77777777777777777              
-                             7777777777777777777                      ${RED}Architecture: ${LGRAY}`uname -m`${BLUE}
+                             7777777777777777777                      ${RED}Architecture: ${LGRAY}`uname -m`${YELLOW}
                               77777777777777777777           
-          77                       7777777777777777                   ${RED}Kernel: ${LGRAY}${Kernel}${BLUE}
+          77                       7777777777777777                   ${RED}Kernel: ${LGRAY}${Kernel}${YELLOW}
          777777                      777777777777777          
-        7777777777                    77777777777777.                 ${RED}Uptime: ${LGRAY}`cat /proc/uptime | grep -o '^[0-9]\+'` Seconds${BLUE}
+        7777777777                    77777777777777.                 ${RED}Uptime: ${LGRAY}`cat /proc/uptime | grep -o '^[0-9]\+'` Seconds${YELLOW}
        7777777777777                   77777777777777         
-      .777777777777                     7777777777777.                ${RED}Free RAM: ${LGRAY}`expr $FREEMEM / 1024` MiB${BLUE}
+      .777777777777                     7777777777777.                ${RED}Free RAM: ${LGRAY}`expr $FREEMEM / 1024` MiB${YELLOW}
       7777777777777                     7777777777777.         
-      7777777777777                     7777777777777.                ${RED}Shell: ${LGRAY}`echo $SHELL`${BLUE}
+      7777777777777                     7777777777777.                ${RED}Shell: ${LGRAY}`echo $SHELL`${YELLOW}
       7777777777777                     7777777777777         
-      7777777777777                     7777777777777                 ${RED}User: ${LGRAY}`whoami`${BLUE}
+      7777777777777                     7777777777777                 ${RED}User: ${LGRAY}`whoami`${YELLOW}
       7777777777777                    7777777777777         
-      777777777777777                    7777777777                   ${RED}Free Space on / : ${LGRAY}`df -h / | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB${BLUE}
+      777777777777777                    7777777777                   ${RED}Free Space on / : ${LGRAY}`df -h / | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB${YELLOW}
        777777777777777                       7777          
-        7777777777777777                                              ${RED}Free Space on /home : ${LGRAY}`df -h /home | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB${BLUE}
+        7777777777777777                                              ${RED}Free Space on /home : ${LGRAY}`df -h /home | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB${YELLOW}
          777777777777777777777                              
-          777777777777777777777                                       ${RED}Temporary Files Size: ${LGRAY}`du -sh -m /tmp 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${BLUE}
+          777777777777777777777                                       ${RED}Temporary Files Size: ${LGRAY}`du -sh -m /tmp 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${YELLOW}
            ..777777777777777777                             
-             .77777777777777777                                       ${RED}Log Files Size: ${LGRAY}`du -sh -m /var/log 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${BLUE}
+             .77777777777777777                                       ${RED}Log Files Size: ${LGRAY}`du -sh -m /var/log 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${YELLOW}
                .777777777777777                             
-                 .7777777777777                                       ${RED}DPKG Database Size: ${LGRAY}`du -sh -m /var/lib/dpkg 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${BLUE}
+                 .7777777777777                                       ${RED}DPKG Database Size: ${LGRAY}`du -sh -m /var/lib/dpkg 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${YELLOW}
                       777777777                             
 
                                                                       \e[0m"
 else
 # Screen too small, then change the way it displays.
-echo -e "${BLUE}                                                                                  
+echo -e "${YELLOW}                                                                                  
                              77777777                                 
                              777777777777.                            
                              7777777777777777                         
@@ -99,31 +100,31 @@ clear
 
 echo -e "    
     
-    ${RED}Distribution: ${LGRAY}`lsb_release -i | cut -c17-`${BLUE}
+    ${RED}Distribution: ${LGRAY}`lsb_release -i | cut -c17-`${YELLOW}
     
-    ${RED}Processor: ${LGRAY}`cat /proc/cpuinfo | grep 'model name' | head -n1 | cut -c14- | cut -f1 -d "@"`${BLUE}
+    ${RED}Processor: ${LGRAY}`cat /proc/cpuinfo | grep 'model name' | head -n1 | cut -c14- | cut -f1 -d "@"`${YELLOW}
     
-    ${RED}Architecture: ${LGRAY}`uname -m`${BLUE}
+    ${RED}Architecture: ${LGRAY}`uname -m`${YELLOW}
     
-    ${RED}Kernel: ${LGRAY}${Kernel}${BLUE}
+    ${RED}Kernel: ${LGRAY}${Kernel}${YELLOW}
     
-    ${RED}Uptime: ${LGRAY}`cat /proc/uptime | grep -o '^[0-9]\+'` Seconds${BLUE}
+    ${RED}Uptime: ${LGRAY}`cat /proc/uptime | grep -o '^[0-9]\+'` Seconds${YELLOW}
     
-    ${RED}Free RAM: ${LGRAY}`expr $FREEMEM / 1024` MiB${BLUE}
+    ${RED}Free RAM: ${LGRAY}`expr $FREEMEM / 1024` MiB${YELLOW}
     
-    ${RED}Shell: ${LGRAY}`echo $SHELL`${BLUE}
+    ${RED}Shell: ${LGRAY}`echo $SHELL`${YELLOW}
     
-    ${RED}User: ${LGRAY}`whoami`${BLUE}
+    ${RED}User: ${LGRAY}`whoami`${YELLOW}
     
-    ${RED}Free Space on / : ${LGRAY}`df -h / | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB${BLUE}
+    ${RED}Free Space on / : ${LGRAY}`df -h / | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB${YELLOW}
     
-    ${RED}Free Space on /home : ${LGRAY}`df -h /home | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB${BLUE}
+    ${RED}Free Space on /home : ${LGRAY}`df -h /home | awk '/[0-9]%/{print $(NF-2)}' | rev | cut -b 2- | rev` GiB${YELLOW}
     
-    ${RED}Temporary Files Size: ${LGRAY}`du -sh -m /tmp 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${BLUE}
+    ${RED}Temporary Files Size: ${LGRAY}`du -sh -m /tmp 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${YELLOW}
     
-    ${RED}Log Files Size: ${LGRAY}`du -sh -m /var/log 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${BLUE}
+    ${RED}Log Files Size: ${LGRAY}`du -sh -m /var/log 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${YELLOW}
     
-    ${RED}DPKG Database Size: ${LGRAY}`du -sh -m /var/lib/dpkg 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${BLUE}
+    ${RED}DPKG Database Size: ${LGRAY}`du -sh -m /var/lib/dpkg 2>/dev/null | awk '{print $1}' | rev | cut -b 1- | rev` MiB${YELLOW}
                                                                       
     \e[0m"
 fi
